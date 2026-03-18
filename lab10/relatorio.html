@@ -1,0 +1,154 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является приобретение практических навыков по
+конфигурированию SMTP-сервера в части настройки аутентификации.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="подготовка-к-работе">Подготовка к работе</h2>
+<p>На виртуальной машине server войдём под нашим пользователем и откроем
+терминал. Перейдём в режим суперпользователя (рис. <span
+class="citation" data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Открытие режима суперпользователя на виртуальной машине server." />
+<figcaption aria-hidden="true">Открытие режима суперпользователя на
+виртуальной машине server.</figcaption>
+</figure>
+<h2 id="мониторинг-почтовой-службы">Мониторинг почтовой службы</h2>
+<p>В дополнительном терминале запустим мониторинг работы почтовой службы
+(рис. <span class="citation" data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Запуск мониторинга работы почтовой службы." />
+<figcaption aria-hidden="true">Запуск мониторинга работы почтовой
+службы.</figcaption>
+</figure>
+<h2 id="настройка-lmtp-в-dovecot">Настройка LMTP в Dovecot</h2>
+<p>Добавим в список протоколов, с которыми может работать Dovecot,
+протокол LMTP (рис. <span class="citation"
+data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Добавление протокола LMTP в Dovecot." />
+<figcaption aria-hidden="true">Добавление протокола LMTP в
+Dovecot.</figcaption>
+</figure>
+<h2 id="настройка-сервиса-lmtp">Настройка сервиса lmtp</h2>
+<p>Настроим в Dovecot сервис lmtp для связи с Postfix, определив
+расположение unix-сокета и права доступа (рис. <span class="citation"
+data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Настройка сервиса lmtp в Dovecot." />
+<figcaption aria-hidden="true">Настройка сервиса lmtp в
+Dovecot.</figcaption>
+</figure>
+<h2 id="настройка-postfix-для-работы-с-lmtp">Настройка Postfix для
+работы с LMTP</h2>
+<p>Переопределим в Postfix передачу сообщений через заданный unix-сокет
+(рис. <span class="citation" data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Настройка Postfix для работы с LMTP." />
+<figcaption aria-hidden="true">Настройка Postfix для работы с
+LMTP.</figcaption>
+</figure>
+<h2 id="настройка-формата-аутентификации">Настройка формата
+аутентификации</h2>
+<p>В файле /etc/dovecot/conf.d/10-auth.conf зададим формат имени
+пользователя для аутентификации в форме логина без указания домена (рис.
+<span class="citation" data-cites="fig-6">@fig-6</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Настройка формата аутентификации в Dovecot." />
+<figcaption aria-hidden="true">Настройка формата аутентификации в
+Dovecot.</figcaption>
+</figure>
+<h2 id="перезапуск-служб">Перезапуск служб</h2>
+<p>Перезапустим Postfix и Dovecot для применения изменений (рис. <span
+class="citation" data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Перезапуск Postfix и Dovecot." />
+<figcaption aria-hidden="true">Перезапуск Postfix и
+Dovecot.</figcaption>
+</figure>
+<h2 id="отправка-тестового-письма">Отправка тестового письма</h2>
+<p>Из-под учётной записи своего пользователя отправим письмо с клиента
+(рис. <span class="citation" data-cites="fig-8">@fig-8</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Отправка тестового письма с клиента." />
+<figcaption aria-hidden="true">Отправка тестового письма с
+клиента.</figcaption>
+</figure>
+<h2 id="просмотр-логов-и-почтового-ящика">Просмотр логов и почтового
+ящика</h2>
+<p>Посмотрим содержание логов при мониторинге почтовой службы и проверим
+почтовый ящик пользователя на сервере (рис. <span class="citation"
+data-cites="fig-9">@fig-9</span>, <span class="citation"
+data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%"
+alt="Просмотр логов почтовой службы." />
+<figcaption aria-hidden="true">Просмотр логов почтовой
+службы.</figcaption>
+</figure>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Просмотр почтового ящика пользователя." />
+<figcaption aria-hidden="true">Просмотр почтового ящика
+пользователя.</figcaption>
+</figure>
+<h2 id="настройка-аутентификации-sasl">Настройка аутентификации
+SASL</h2>
+<p>Определим службу аутентификации пользователей в Dovecot и настроим
+Postfix для использования SASL-аутентификации (рис. <span
+class="citation" data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Настройка аутентификации SASL." />
+<figcaption aria-hidden="true">Настройка аутентификации
+SASL.</figcaption>
+</figure>
+<h2 id="временный-запуск-smtp-с-аутентификацией">Временный запуск SMTP с
+аутентификацией</h2>
+<p>Для проверки работы аутентификации временно запустим SMTP-сервер с
+возможностью аутентификации (рис. <span class="citation"
+data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Настройка SMTP-сервера для проверки аутентификации." />
+<figcaption aria-hidden="true">Настройка SMTP-сервера для проверки
+аутентификации.</figcaption>
+</figure>
+<h2 id="тестирование-аутентификации-через-telnet">Тестирование
+аутентификации через telnet</h2>
+<p>На клиенте установим telnet, получим строку для аутентификации и
+протестируем подключение к SMTP-серверу (рис. <span class="citation"
+data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Тестирование аутентификации через telnet." />
+<figcaption aria-hidden="true">Тестирование аутентификации через
+telnet.</figcaption>
+</figure>
+<h2 id="настройка-smtp-на-порту-587">Настройка SMTP на порту 587</h2>
+<p>Настроим SMTP-сервер на 587-м порту, разрешим соответствующую службу
+в межсетевом экране и перезапустим Postfix (рис. <span class="citation"
+data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Настройка SMTP на порту 587." />
+<figcaption aria-hidden="true">Настройка SMTP на порту 587.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были приобретены практические
+навыки по конфигурированию SMTP-сервера в части настройки
+аутентификации.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><strong>Приведите пример задания формата аутентификации пользователя
+в Dovecot в форме логина с указанием домена.</strong><br />
+В конфигурационном файле Dovecot (/etc/dovecot/conf.d/10-auth.conf)
+можно указать формат аутентификации следующим образом:</li>
+</ol>

@@ -1,0 +1,174 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является получение навыков работы с программным
+средством Fail2ban для обеспечения базовой защиты от атак типа «brute
+force».</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="установка-fail2ban">Установка Fail2ban</h2>
+<p>На сервере установим fail2ban (рис. <span class="citation"
+data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Установка fail2ban на сервере." />
+<figcaption aria-hidden="true">Установка fail2ban на
+сервере.</figcaption>
+</figure>
+<h2 id="запуск-сервера-fail2ban">Запуск сервера Fail2ban</h2>
+<p>Запустим сервер fail2ban и добавим его в автозагрузку (рис. <span
+class="citation" data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Запуск и включение автозагрузки fail2ban." />
+<figcaption aria-hidden="true">Запуск и включение автозагрузки
+fail2ban.</figcaption>
+</figure>
+<h2 id="мониторинг-журнала-событий">Мониторинг журнала событий</h2>
+<p>В дополнительном терминале запустим просмотр журнала событий fail2ban
+(рис. <span class="citation" data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Просмотр журнала событий fail2ban." />
+<figcaption aria-hidden="true">Просмотр журнала событий
+fail2ban.</figcaption>
+</figure>
+<h2 id="создание-локальной-конфигурации">Создание локальной
+конфигурации</h2>
+<p>Создадим файл с локальной конфигурацией fail2ban (рис. <span
+class="citation" data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Создание файла локальной конфигурации fail2ban." />
+<figcaption aria-hidden="true">Создание файла локальной конфигурации
+fail2ban.</figcaption>
+</figure>
+<h2 id="настройка-защиты-ssh">Настройка защиты SSH</h2>
+<p>В файле /etc/fail2ban/jail.d/customisation.local зададим время
+блокирования на 1 час и включим защиту SSH (рис. <span class="citation"
+data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Настройка защиты SSH в fail2ban." />
+<figcaption aria-hidden="true">Настройка защиты SSH в
+fail2ban.</figcaption>
+</figure>
+<h2 id="перезапуск-fail2ban">Перезапуск fail2ban</h2>
+<p>Перезапустим fail2ban для применения изменений (рис. <span
+class="citation" data-cites="fig-6">@fig-6</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%" alt="Перезапуск fail2ban." />
+<figcaption aria-hidden="true">Перезапуск fail2ban.</figcaption>
+</figure>
+<h2 id="просмотр-журнала-событий">Просмотр журнала событий</h2>
+<p>Посмотрим журнал событий после перезапуска (рис. <span
+class="citation" data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Просмотр журнала событий fail2ban." />
+<figcaption aria-hidden="true">Просмотр журнала событий
+fail2ban.</figcaption>
+</figure>
+<h2 id="настройка-защиты-http">Настройка защиты HTTP</h2>
+<p>В файле /etc/fail2ban/jail.d/customisation.local включим защиту HTTP
+(рис. <span class="citation" data-cites="fig-8">@fig-8</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Включение защиты HTTP в fail2ban." />
+<figcaption aria-hidden="true">Включение защиты HTTP в
+fail2ban.</figcaption>
+</figure>
+<h2 id="перезапуск-и-проверка">Перезапуск и проверка</h2>
+<p>Перезапустим fail2ban и проверим журнал событий (рис. <span
+class="citation" data-cites="fig-9">@fig-9</span>, <span
+class="citation" data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%" alt="Перезапуск fail2ban." />
+<figcaption aria-hidden="true">Перезапуск fail2ban.</figcaption>
+</figure>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Просмотр журнала событий после включения HTTP." />
+<figcaption aria-hidden="true">Просмотр журнала событий после включения
+HTTP.</figcaption>
+</figure>
+<h2 id="настройка-защиты-почты">Настройка защиты почты</h2>
+<p>В файле /etc/fail2ban/jail.d/customisation.local включим защиту почты
+(рис. <span class="citation" data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Включение защиты почты в fail2ban." />
+<figcaption aria-hidden="true">Включение защиты почты в
+fail2ban.</figcaption>
+</figure>
+<h2 id="перезапуск-и-финальная-проверка">Перезапуск и финальная
+проверка</h2>
+<p>Перезапустим fail2ban и посмотрим журнал событий (рис. <span
+class="citation" data-cites="fig-12">@fig-12</span>, <span
+class="citation" data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Повторный перезапуск fail2ban." />
+<figcaption aria-hidden="true">Повторный перезапуск
+fail2ban.</figcaption>
+</figure>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Просмотр журнала событий после включения почты." />
+<figcaption aria-hidden="true">Просмотр журнала событий после включения
+почты.</figcaption>
+</figure>
+<h2 id="управление-блокировками">Управление блокировками</h2>
+<p>На сервере посмотрим статус защиты SSH и разблокируем IP-адрес
+клиента (рис. <span class="citation"
+data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Просмотр статуса и разблокировка IP-адреса." />
+<figcaption aria-hidden="true">Просмотр статуса и разблокировка
+IP-адреса.</figcaption>
+</figure>
+<h2 id="настройка-игнорирования-адреса">Настройка игнорирования
+адреса</h2>
+<p>Внесём изменение в конфигурационный файл, добавив игнорирование
+адреса клиента, и перезапустим fail2ban (рис. <span class="citation"
+data-cites="fig-15">@fig-15</span>):</p>
+<figure id="fig-15">
+<img src="image/15.png" style="width:70.0%"
+alt="Добавление игнорирования адреса клиента." />
+<figcaption aria-hidden="true">Добавление игнорирования адреса
+клиента.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были получены навыки работы с
+программным средством Fail2ban для обеспечения базовой защиты от атак
+типа «brute force».</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><p><strong>Поясните принцип работы Fail2ban.</strong><br />
+Fail2ban является инструментом для защиты от атак на серверы, основанных
+на анализе журналов. Он мониторит журналы системы на предмет неудачных
+попыток входа или других событий, а затем блокирует IP-адреса атакующих
+с использованием системных средств, таких как iptables. Принцип
+работы:</p>
+<ul>
+<li>Мониторинг журналов на предмет определенных событий.</li>
+<li>Обнаружение повторных неудачных попыток входа или других
+нарушений.</li>
+<li>Динамическое обновление правил брандмауэра для блокировки атакующих
+IP-адресов.</li>
+</ul></li>
+<li><p><strong>Настройки какого файла более приоритетны: jail.conf или
+jail.local?</strong><br />
+Настройки файла jail.local имеют более высокий приоритет и перекрывают
+настройки из jail.conf. Таким образом, если есть конфликтующие
+настройки, они будут использоваться из jail.local.</p></li>
+<li><p><strong>Как настроить оповещение администратора при срабатывании
+Fail2ban?</strong><br />
+В файле jail.local нужно указать параметр <code>destemail</code> и
+задать адрес электронной почты, а также параметр <code>action</code> с
+указанием определенного действия (например, <code>action_mw</code> для
+отправки почты).</p></li>
+<li><p><strong>Поясните построчно настройки по умолчанию в
+конфигурационном файле /etc/fail2ban/jail.conf, относящиеся к
+веб-службе.</strong><br />
+Пример настроек для веб-службы в файле jail.conf:</p></li>
+</ol>

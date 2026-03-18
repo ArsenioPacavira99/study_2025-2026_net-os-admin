@@ -1,0 +1,143 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является приобретение навыков настройки доступа
+групп пользователей к общим ресурсам по протоколу SMB.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="установка-samba-на-сервере">Установка Samba на сервере</h2>
+<p>На сервере установим необходимые пакеты samba, samba-client и
+cifs-utils (рис. <span class="citation"
+data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Установка пакетов Samba на сервере." />
+<figcaption aria-hidden="true">Установка пакетов Samba на
+сервере.</figcaption>
+</figure>
+<h2 id="создание-группы-и-каталога">Создание группы и каталога</h2>
+<p>Создадим группу sambagroup для пользователей, добавлем пользователя и
+создадим общий каталог (рис. <span class="citation"
+data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Создание группы и общего каталога для Samba." />
+<figcaption aria-hidden="true">Создание группы и общего каталога для
+Samba.</figcaption>
+</figure>
+<h2 id="настройка-рабочей-группы">Настройка рабочей группы</h2>
+<p>В файле конфигурации /etc/samba/smb.conf изменим параметр рабочей
+группы (рис. <span class="citation"
+data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Изменение рабочей группы в конфигурации Samba." />
+<figcaption aria-hidden="true">Изменение рабочей группы в конфигурации
+Samba.</figcaption>
+</figure>
+<h2 id="добавление-общего-ресурса">Добавление общего ресурса</h2>
+<p>В конце файла добавим раздел с описанием общего доступа к
+разделяемому ресурсу (рис. <span class="citation"
+data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Добавление общего ресурса в конфигурацию Samba." />
+<figcaption aria-hidden="true">Добавление общего ресурса в конфигурацию
+Samba.</figcaption>
+</figure>
+<h2 id="проверка-синтаксиса">Проверка синтаксиса</h2>
+<p>Убедимся, что мы не сделали синтаксических ошибок в файле smb.conf,
+используя команду testparm (рис. <span class="citation"
+data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Проверка синтаксиса конфигурационного файла Samba." />
+<figcaption aria-hidden="true">Проверка синтаксиса конфигурационного
+файла Samba.</figcaption>
+</figure>
+<h2 id="запуск-демона-samba">Запуск демона Samba</h2>
+<p>Запустим демон Samba и посмотрим его статус (рис. <span
+class="citation" data-cites="fig-6">@fig-6</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Запуск и проверка статуса Samba." />
+<figcaption aria-hidden="true">Запуск и проверка статуса
+Samba.</figcaption>
+</figure>
+<h2 id="проверка-общего-доступа">Проверка общего доступа</h2>
+<p>Для проверки наличия общего доступа попробуем подключиться к серверу
+с помощью smbclient (рис. <span class="citation"
+data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Проверка общего доступа через smbclient." />
+<figcaption aria-hidden="true">Проверка общего доступа через
+smbclient.</figcaption>
+</figure>
+<h2 id="настройка-межсетевого-экрана">Настройка межсетевого экрана</h2>
+<p>Посмотрим файл конфигурации межсетевого экрана для Samba и настроим
+его (рис. <span class="citation" data-cites="fig-8">@fig-8</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Настройка межсетевого экрана для Samba." />
+<figcaption aria-hidden="true">Настройка межсетевого экрана для
+Samba.</figcaption>
+</figure>
+<h2 id="настройка-прав-доступа-и-selinux">Настройка прав доступа и
+SELinux</h2>
+<p>Настроим права доступа для каталога с разделяемым ресурсом, контекст
+безопасности SELinux и добавим пользователя в базу Samba (рис. <span
+class="citation" data-cites="fig-9">@fig-9</span>):</p>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%"
+alt="Настройка прав доступа и SELinux для Samba." />
+<figcaption aria-hidden="true">Настройка прав доступа и SELinux для
+Samba.</figcaption>
+</figure>
+<h2 id="установка-клиентских-пакетов">Установка клиентских пакетов</h2>
+<p>На клиенте установим необходимые пакеты samba-client и cifs-utils
+(рис. <span class="citation" data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Установка клиентских пакетов Samba." />
+<figcaption aria-hidden="true">Установка клиентских пакетов
+Samba.</figcaption>
+</figure>
+<h2 id="настройка-клиента">Настройка клиента</h2>
+<p>На клиенте настроим межсетевой экран, создадим группу и изменим
+рабочую группу (рис. <span class="citation"
+data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Настройка клиента для работы с Samba." />
+<figcaption aria-hidden="true">Настройка клиента для работы с
+Samba.</figcaption>
+</figure>
+<h2 id="создание-файла-учётных-данных">Создание файла учётных
+данных</h2>
+<p>Создадим файл smbusers в каталоге /etc/samba/ для настройки работы с
+Samba с помощью файла учётных данных (рис. <span class="citation"
+data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Создание файла учётных данных Samba." />
+<figcaption aria-hidden="true">Создание файла учётных данных
+Samba.</figcaption>
+</figure>
+<h2 id="монтирование-общего-ресурса">Монтирование общего ресурса</h2>
+<p>Добавим строку в /etc/fstab и подмонтируем общий ресурс (рис. <span
+class="citation" data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Монтирование общего ресурса Samba." />
+<figcaption aria-hidden="true">Монтирование общего ресурса
+Samba.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были приобретены навыки
+настройки доступа групп пользователей к общим ресурсам по протоколу
+SMB.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><strong>Какова минимальная конфигурация для smb.conf для создания
+общего ресурса, который предоставляет доступ к каталогу
+/data?</strong></li>
+</ol>

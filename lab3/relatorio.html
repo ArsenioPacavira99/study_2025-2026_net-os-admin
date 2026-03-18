@@ -1,0 +1,78 @@
+<h1 id="лабораторная-работа-3">Лабораторная работа №3</h1>
+<h2 id="настройка-dhcp-сервера">Настройка DHCP сервера</h2>
+<p><strong>Студент:</strong> Пакавира Арсениу Висенте Луиш<br />
+<strong>Группа:</strong> НФИбд 02 – 23<br />
+<strong>Дисциплина:</strong> Администрирование сетевых подсистем</p>
+<hr />
+<h2 id="цель-работы">Цель работы</h2>
+<p>Целью данной работы является приобретение практических навыков по
+установке и конфигурированию DHCP-сервера, усвоение принципов
+автоматической выдачи сетевых настроек клиентам.</p>
+<hr />
+<h2 id="выполнение-работы">Выполнение работы</h2>
+<h3 id="подготовка-лабораторного-стенда">1. Подготовка лабораторного
+стенда</h3>
+<p>Лабораторный стенд был развёрнут на платформе <strong>Oracle
+VirtualBox</strong> с использованием <strong>Vagrant</strong> для
+автоматизации создания и настройки виртуальных машин. В качестве базовой
+операционной системы выбрана <strong>Fedora 39</strong> (образ
+<code>fedora/39-cloud-base</code>).</p>
+<h4 id="структура-стенда">1.1. Структура стенда</h4>
+<p>Стенд состоит из двух виртуальных машин:</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Имя машины</th>
+<th>IP-адрес</th>
+<th>Роль</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>dhcp-server</code></td>
+<td><code>192.168.56.10</code></td>
+<td>DHCP-сервер (распределение сетевых настроек)</td>
+</tr>
+<tr class="even">
+<td><code>dhcp-client</code></td>
+<td>Динамический</td>
+<td>Клиентская машина для получения IP по DHCP</td>
+</tr>
+</tbody>
+</table>
+<p>Обе машины подключены к <strong>внутренней виртуальной сети</strong>
+<code>dhcp_lab</code> с типом адаптера <strong>Host-Only</strong>.
+Сервер имеет статический IP-адрес, клиент получает настройки
+автоматически.</p>
+<h4 id="конфигурация-vagrant">1.2. Конфигурация Vagrant</h4>
+<p>Файл <code>Vagrantfile</code> содержит следующую конфигурацию:</p>
+<ul>
+<li><strong>Провайдер:</strong> VirtualBox</li>
+<li><strong>Оперативная память:</strong> 512 МБ для каждой ВМ</li>
+<li><strong>Количество ядер CPU:</strong> 1</li>
+<li><strong>Сеть:</strong> для сервера настроен статический IP, для
+клиента - динамический</li>
+<li><strong>Синхронизация папок:</strong> каталог
+<code>./provision</code> монтируется в <code>/vagrant</code> внутри
+ВМ</li>
+</ul>
+<h4 id="предварительная-настройка-сервера">1.3. Предварительная
+настройка сервера</h4>
+<p>Перед установкой DHCP-сервера на машину <code>dhcp-server</code> были
+выполнены следующие действия:</p>
+<ul>
+<li>Обновление пакетной базы: <code>sudo dnf update -y</code></li>
+<li>Установка сетевых утилит:
+<code>sudo dnf install net-tools -y</code></li>
+<li>Настройка статического IP-адреса через конфигурационный файл
+<code>/etc/sysconfig/network-scripts/ifcfg-enp0s3</code></li>
+<li>Отключение SELinux для упрощения отладки:
+<code>sudo setenforce 0</code></li>
+<li>Настройка файервола для разрешения DHCP-трафика: ```bash sudo
+firewall-cmd –add-service=dhcp –permanent sudo firewall-cmd –reload</li>
+</ul>

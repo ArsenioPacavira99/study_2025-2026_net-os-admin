@@ -1,0 +1,171 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является приобретение практических навыков по
+настройке удалённого доступа к серверу с помощью SSH.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="настройка-пароля-для-root">Настройка пароля для root</h2>
+<p>На сервере зададим пароль для пользователя root (рис. <span
+class="citation" data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Создание пароля для пользователя root на сервере." />
+<figcaption aria-hidden="true">Создание пароля для пользователя root на
+сервере.</figcaption>
+</figure>
+<h2 id="мониторинг-системных-событий">Мониторинг системных событий</h2>
+<p>На сервере в дополнительном терминале запустим мониторинг системных
+событий (рис. <span class="citation"
+data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Запуск мониторинга системных событий." />
+<figcaption aria-hidden="true">Запуск мониторинга системных
+событий.</figcaption>
+</figure>
+<h2 id="попытка-доступа-через-root">Попытка доступа через root</h2>
+<p>С клиента попытаемся получить доступ к серверу посредством
+SSH-соединения через пользователя root (рис. <span class="citation"
+data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Попытка SSH-доступа через пользователя root." />
+<figcaption aria-hidden="true">Попытка SSH-доступа через пользователя
+root.</figcaption>
+</figure>
+<h2 id="запрет-входа-для-root">Запрет входа для root</h2>
+<p>На сервере откроем файл /etc/ssh/sshd_config для редактирования и
+запретим вход на сервер пользователю root (рис. <span class="citation"
+data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Запрет входа для root в конфигурации SSH." />
+<figcaption aria-hidden="true">Запрет входа для root в конфигурации
+SSH.</figcaption>
+</figure>
+<h2 id="перезапуск-sshd">Перезапуск sshd</h2>
+<p>После сохранения изменений перезапустим sshd (рис. <span
+class="citation" data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Перезапуск службы sshd." />
+<figcaption aria-hidden="true">Перезапуск службы sshd.</figcaption>
+</figure>
+<h2 id="настройка-allowusers">Настройка AllowUsers</h2>
+<p>На сервере откроем файл /etc/ssh/sshd_config и добавим строку
+AllowUsers vagrant, затем перезапустим sshd (рис. <span class="citation"
+data-cites="fig-6">@fig-6</span>, <span class="citation"
+data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Добавление AllowUsers в конфигурацию SSH." />
+<figcaption aria-hidden="true">Добавление AllowUsers в конфигурацию
+SSH.</figcaption>
+</figure>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Перезапуск sshd после изменения." />
+<figcaption aria-hidden="true">Перезапуск sshd после
+изменения.</figcaption>
+</figure>
+<h2 id="добавление-пользователя-в-allowusers">Добавление пользователя в
+AllowUsers</h2>
+<p>Внесём изменение в файл /etc/ssh/sshd_config, добавив пользователя
+user в AllowUsers, и перезапустим sshd (рис. <span class="citation"
+data-cites="fig-8">@fig-8</span>, <span class="citation"
+data-cites="fig-9">@fig-9</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Добавление пользователя user в AllowUsers." />
+<figcaption aria-hidden="true">Добавление пользователя user в
+AllowUsers.</figcaption>
+</figure>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%" alt="Перезапуск sshd." />
+<figcaption aria-hidden="true">Перезапуск sshd.</figcaption>
+</figure>
+<h2 id="настройка-нескольких-портов">Настройка нескольких портов</h2>
+<p>В файле /etc/ssh/sshd_config добавим второй порт 2022, перезапустим
+sshd и проверим статус (рис. <span class="citation"
+data-cites="fig-10">@fig-10</span>, <span class="citation"
+data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Добавление порта 2022 в конфигурацию SSH." />
+<figcaption aria-hidden="true">Добавление порта 2022 в конфигурацию
+SSH.</figcaption>
+</figure>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Проверка статуса sshd после добавления порта." />
+<figcaption aria-hidden="true">Проверка статуса sshd после добавления
+порта.</figcaption>
+</figure>
+<h2 id="настройка-selinux-и-межсетевого-экрана">Настройка SELinux и
+межсетевого экрана</h2>
+<p>Исправим метки SELinux для порта 2022 и откроем порт в межсетевом
+экране, затем перезапустим sshd (рис. <span class="citation"
+data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Настройка SELinux и межсетевого экрана для порта 2022." />
+<figcaption aria-hidden="true">Настройка SELinux и межсетевого экрана
+для порта 2022.</figcaption>
+</figure>
+<h2 id="подключение-через-новый-порт">Подключение через новый порт</h2>
+<p>С клиента подключимся к серверу через порт 2022 и получим доступ root
+(рис. <span class="citation" data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Подключение к серверу через порт 2022." />
+<figcaption aria-hidden="true">Подключение к серверу через порт
+2022.</figcaption>
+</figure>
+<h2 id="настройка-аутентификации-по-ключу">Настройка аутентификации по
+ключу</h2>
+<p>На сервере разрешим аутентификацию по ключу и перезапустим sshd (рис.
+<span class="citation" data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Настройка аутентификации по ключу." />
+<figcaption aria-hidden="true">Настройка аутентификации по
+ключу.</figcaption>
+</figure>
+<h2 id="генерация-и-копирование-ключа">Генерация и копирование
+ключа</h2>
+<p>На клиенте сформируем SSH-ключ и скопируем его на сервер (рис. <span
+class="citation" data-cites="fig-15">@fig-15</span>):</p>
+<figure id="fig-15">
+<img src="image/15.png" style="width:70.0%"
+alt="Генерация и копирование SSH-ключа." />
+<figcaption aria-hidden="true">Генерация и копирование
+SSH-ключа.</figcaption>
+</figure>
+<h2 id="настройка-перенаправления-портов">Настройка перенаправления
+портов</h2>
+<p>На клиенте перенаправим порт 80 на сервере на порт 8080 локально и
+проверим запущенные службы (рис. <span class="citation"
+data-cites="fig-16">@fig-16</span>):</p>
+<figure id="fig-16">
+<img src="image/16.png" style="width:70.0%"
+alt="Перенаправление портов через SSH." />
+<figcaption aria-hidden="true">Перенаправление портов через
+SSH.</figcaption>
+</figure>
+<h2 id="настройка-x11-forwarding">Настройка X11 Forwarding</h2>
+<p>На сервере разрешим отображение графических интерфейсов X11 и
+перезапустим sshd (рис. <span class="citation"
+data-cites="fig-17">@fig-17</span>):</p>
+<figure id="fig-17">
+<img src="image/17.png" style="width:70.0%"
+alt="Настройка X11 Forwarding." />
+<figcaption aria-hidden="true">Настройка X11 Forwarding.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были приобретены практические
+навыки по настройке удалённого доступа к серверу с помощью SSH.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><strong>Как запретить удалённый доступ по SSH пользователю root и
+разрешить доступ пользователю alice?</strong><br />
+В конфигурационном файле SSH /etc/ssh/sshd_config:</li>
+</ol>

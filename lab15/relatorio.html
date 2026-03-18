@@ -1,0 +1,253 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является получение навыков по работе с журналами
+системных событий.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="настройка-сервера-для-приёма-журналов">Настройка сервера для
+приёма журналов</h2>
+<p>На сервере создадим файл конфигурации сетевого хранения журналов в
+каталоге /etc/rsyslog.d (рис. <span class="citation"
+data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Создание файла конфигурации netlog-server.conf на сервере." />
+<figcaption aria-hidden="true">Создание файла конфигурации
+netlog-server.conf на сервере.</figcaption>
+</figure>
+<h2 id="настройка-приёма-записей-по-tcp">Настройка приёма записей по
+TCP</h2>
+<p>В файле конфигурации /etc/rsyslog.d/netlog-server.conf включим приём
+записей журнала по TCP-порту 514 (рис. <span class="citation"
+data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Настройка приёма записей журнала по TCP-порту 514." />
+<figcaption aria-hidden="true">Настройка приёма записей журнала по
+TCP-порту 514.</figcaption>
+</figure>
+<h2 id="перезапуск-rsyslog-и-проверка-портов">Перезапуск rsyslog и
+проверка портов</h2>
+<p>Перезапустим службу rsyslog и посмотрим, какие порты, связанные с
+rsyslog, прослушиваются (рис. <span class="citation"
+data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Перезапуск rsyslog и просмотр прослушиваемых портов." />
+<figcaption aria-hidden="true">Перезапуск rsyslog и просмотр
+прослушиваемых портов.</figcaption>
+</figure>
+<h2 id="настройка-межсетевого-экрана-на-сервере">Настройка межсетевого
+экрана на сервере</h2>
+<p>На сервере настроим межсетевой экран для приёма сообщений по
+TCP-порту 514 (рис. <span class="citation"
+data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Настройка межсетевого экрана для TCP-порта 514." />
+<figcaption aria-hidden="true">Настройка межсетевого экрана для
+TCP-порта 514.</figcaption>
+</figure>
+<h2 id="настройка-клиента-для-отправки-журналов">Настройка клиента для
+отправки журналов</h2>
+<p>На клиенте создадим файл конфигурации сетевого хранения журналов
+(рис. <span class="citation" data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Создание файла конфигурации netlog-client.conf на клиенте." />
+<figcaption aria-hidden="true">Создание файла конфигурации
+netlog-client.conf на клиенте.</figcaption>
+</figure>
+<h2 id="настройка-перенаправления-сообщений">Настройка перенаправления
+сообщений</h2>
+<p>В файле конфигурации /etc/rsyslog.d/netlog-client.conf включим
+перенаправление сообщений журнала на 514 TCP-порт сервера (рис. <span
+class="citation" data-cites="fig-6">@fig-6</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Настройка перенаправления сообщений на сервер." />
+<figcaption aria-hidden="true">Настройка перенаправления сообщений на
+сервер.</figcaption>
+</figure>
+<h2 id="перезапуск-rsyslog-на-клиенте">Перезапуск rsyslog на
+клиенте</h2>
+<p>Перезапустим службу rsyslog на клиенте для применения изменений (рис.
+<span class="citation" data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Перезапуск rsyslog на клиенте." />
+<figcaption aria-hidden="true">Перезапуск rsyslog на
+клиенте.</figcaption>
+</figure>
+<h2 id="просмотр-журналов-на-сервере">Просмотр журналов на сервере</h2>
+<p>На сервере просмотрим один из файлов журнала для проверки сбора
+сообщений (рис. <span class="citation"
+data-cites="fig-8">@fig-8</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Просмотр файлов журнала на сервере." />
+<figcaption aria-hidden="true">Просмотр файлов журнала на
+сервере.</figcaption>
+</figure>
+<h2
+id="использование-графической-программы-для-просмотра-журналов">Использование
+графической программы для просмотра журналов</h2>
+<p>На сервере под пользователем запустим графическую программу для
+просмотра журналов gnome-system-monitor (рис. <span class="citation"
+data-cites="fig-9">@fig-9</span>):</p>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%"
+alt="Запуск gnome-system-monitor для просмотра журналов." />
+<figcaption aria-hidden="true">Запуск gnome-system-monitor для просмотра
+журналов.</figcaption>
+</figure>
+<h2 id="установка-lnav">Установка lnav</h2>
+<p>На сервере установим просмотрщик журналов системных сообщений lnav
+(рис. <span class="citation" data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Установка lnav на сервере." />
+<figcaption aria-hidden="true">Установка lnav на сервере.</figcaption>
+</figure>
+<h2 id="просмотр-логов-с-помощью-lnav">Просмотр логов с помощью
+lnav</h2>
+<p>Просмотрим логи с помощью lnav для удобного анализа системных
+сообщений (рис. <span class="citation"
+data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Просмотр логов с помощью lnav." />
+<figcaption aria-hidden="true">Просмотр логов с помощью
+lnav.</figcaption>
+</figure>
+<h2 id="настройка-автоматического-развёртывания-на-сервере">Настройка
+автоматического развёртывания на сервере</h2>
+<p>На виртуальной машине server перейдём в каталог для внесения
+изменений в настройки внутреннего окружения, создадим каталог netlog и
+исполняемый файл netlog.sh (рис. <span class="citation"
+data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Создание каталога netlog и файла netlog.sh на сервере." />
+<figcaption aria-hidden="true">Создание каталога netlog и файла
+netlog.sh на сервере.</figcaption>
+</figure>
+<h2 id="добавление-скрипта-в-netlog.sh-на-сервере">Добавление скрипта в
+netlog.sh на сервере</h2>
+<p>Откроем файл netlog.sh на редактирование и пропишем скрипт из
+лабораторной работы (рис. <span class="citation"
+data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Добавление скрипта в netlog.sh на сервере." />
+<figcaption aria-hidden="true">Добавление скрипта в netlog.sh на
+сервере.</figcaption>
+</figure>
+<h2 id="настройка-автоматического-развёртывания-на-клиенте">Настройка
+автоматического развёртывания на клиенте</h2>
+<p>На виртуальной машине client перейдём в каталог для внесения
+изменений в настройки внутреннего окружения, создадим каталог netlog и
+исполняемый файл netlog.sh (рис. <span class="citation"
+data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Создание каталога netlog и файла netlog.sh на клиенте." />
+<figcaption aria-hidden="true">Создание каталога netlog и файла
+netlog.sh на клиенте.</figcaption>
+</figure>
+<h2 id="добавление-скрипта-в-netlog.sh-на-клиенте">Добавление скрипта в
+netlog.sh на клиенте</h2>
+<p>Откроем файл netlog.sh на редактирование и пропишем скрипт из
+лабораторной работы (рис. <span class="citation"
+data-cites="fig-15">@fig-15</span>):</p>
+<figure id="fig-15">
+<img src="image/15.png" style="width:70.0%"
+alt="Добавление скрипта в netlog.sh на клиенте." />
+<figcaption aria-hidden="true">Добавление скрипта в netlog.sh на
+клиенте.</figcaption>
+</figure>
+<h2 id="настройка-vagrantfile-для-сервера">Настройка Vagrantfile для
+сервера</h2>
+<p>Для отработки созданного скрипта во время загрузки виртуальной машины
+server в конфигурационном файле Vagrantfile добавим запись в разделе
+конфигурации для сервера (рис. <span class="citation"
+data-cites="fig-16">@fig-16</span>):</p>
+<figure id="fig-16">
+<img src="image/16.png" style="width:70.0%"
+alt="Добавление записи в Vagrantfile для сервера." />
+<figcaption aria-hidden="true">Добавление записи в Vagrantfile для
+сервера.</figcaption>
+</figure>
+<h2 id="настройка-vagrantfile-для-клиента">Настройка Vagrantfile для
+клиента</h2>
+<p>Для отработки созданного скрипта во время загрузки виртуальной машины
+client в конфигурационном файле Vagrantfile добавим запись в разделе
+конфигурации для клиента (рис. <span class="citation"
+data-cites="fig-17">@fig-17</span>):</p>
+<figure id="fig-17">
+<img src="image/17.png" style="width:70.0%"
+alt="Добавление записи в Vagrantfile для клиента." />
+<figcaption aria-hidden="true">Добавление записи в Vagrantfile для
+клиента.</figcaption>
+</figure>
+<h2 id="проверка-сбора-журналов-на-сервере">Проверка сбора журналов на
+сервере</h2>
+<p>Проверим, что журналы с клиента успешно собираются на сервере (рис.
+<span class="citation" data-cites="fig-18">@fig-18</span>):</p>
+<figure id="fig-18">
+<img src="image/18.png" style="width:70.0%"
+alt="Проверка сбора журналов с клиента на сервере." />
+<figcaption aria-hidden="true">Проверка сбора журналов с клиента на
+сервере.</figcaption>
+</figure>
+<h2 id="мониторинг-системных-событий">Мониторинг системных событий</h2>
+<p>Запустим мониторинг системных событий для наблюдения за работой
+службы (рис. <span class="citation"
+data-cites="fig-19">@fig-19</span>):</p>
+<figure id="fig-19">
+<img src="image/19.png" style="width:70.0%"
+alt="Мониторинг системных событий." />
+<figcaption aria-hidden="true">Мониторинг системных
+событий.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были получены навыки по работе
+с журналами системных событий.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><p><strong>Какой модуль rsyslog вы должны использовать для приёма
+сообщений от journald?</strong><br />
+Для приёма сообщений от journald в rsyslog используется модуль
+imjournal.</p></li>
+<li><p><strong>Как называется устаревший модуль, который можно
+использовать для включения приёма сообщений журнала в
+rsyslog?</strong><br />
+Устаревший модуль для приема сообщений журнала в rsyslog - imuxsock (или
+imuxsock_legacy).</p></li>
+<li><p><strong>Чтобы убедиться, что устаревший метод приёма сообщений из
+journald в rsyslog не используется, какой дополнительный параметр
+следует использовать?</strong><br />
+Для предотвращения использования устаревшего метода можно использовать
+параметр <code>SystemMaxUseForward=no</code> в файле
+/etc/systemd/journald.conf.</p></li>
+<li><p><strong>В каком конфигурационном файле содержатся настройки,
+которые позволяют вам настраивать работу журнала?</strong><br />
+Настройки, позволяющие настроить работу журнала, содержатся в файле
+/etc/systemd/journald.conf.</p></li>
+<li><p><strong>Каким параметром управляется пересылка сообщений из
+journald в rsyslog?</strong><br />
+Для управления пересылкой сообщений из journald в rsyslog используется
+параметр <code>ForwardToSyslog=yes</code> в файле
+/etc/systemd/journald.conf.</p></li>
+<li><p><strong>Какой модуль rsyslog вы можете использовать для включения
+сообщений из файла журнала, не созданного rsyslog?</strong><br />
+Для включения сообщений из файла журнала, не созданного rsyslog,
+используется модуль imfile.</p></li>
+<li><p><strong>Какой модуль rsyslog вам нужно использовать для пересылки
+сообщений в базу данных MariaDB?</strong><br />
+Для пересылки сообщений в базу данных MariaDB используется модуль
+ommysql или ommysqlps.</p></li>
+<li><p><strong>Какие две строки вам нужно включить в rsyslog.conf, чтобы
+позволить текущему журнальному серверу получать сообщения через
+TCP?</strong><br />
+Добавьте следующие строки в rsyslog.conf:</p></li>
+</ol>

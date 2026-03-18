@@ -1,0 +1,318 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является приобретение практических навыков по
+установке и конфигурированию DNS-сервера, усвоение принципов работы
+системы доменных имён.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="подготовка-к-работе">Подготовка к работе</h2>
+<p>Загрузим нашу операционную систему и перейдем в рабочий каталог с
+проектом (рис. <span class="citation"
+data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Переход в рабочий каталог проекта." />
+<figcaption aria-hidden="true">Переход в рабочий каталог
+проекта.</figcaption>
+</figure>
+<p>Далее запустим виртуальную машину server (рис. <span class="citation"
+data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Запуск виртуальной машины server." />
+<figcaption aria-hidden="true">Запуск виртуальной машины
+server.</figcaption>
+</figure>
+<h2 id="установка-dns-сервера">Установка DNS-сервера</h2>
+<p>На виртуальной машине server войдём под созданным нами в предыдущей
+работе пользователем и откроем терминал. Перейдём в режим
+суперпользователя и установим bind и bind-utils (рис. <span
+class="citation" data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Переход в режим суперпользователя и установка bind, bind-utils." />
+<figcaption aria-hidden="true">Переход в режим суперпользователя и
+установка bind, bind-utils.</figcaption>
+</figure>
+<h2 id="проверка-работы-dns">Проверка работы DNS</h2>
+<p>С помощью утилиты dig сделаем запрос к DNS-адресу www.yandex.ru (рис.
+<span class="citation" data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Запрос с помощью утилиты dig." />
+<figcaption aria-hidden="true">Запрос с помощью утилиты
+dig.</figcaption>
+</figure>
+<h2 id="просмотр-конфигурационных-файлов">Просмотр конфигурационных
+файлов</h2>
+<p>Просмотрим содержание основных конфигурационных файлов DNS (рис.
+<span class="citation" data-cites="fig-5">@fig-5</span>, <span
+class="citation" data-cites="fig-6">@fig-6</span>, <span
+class="citation" data-cites="fig-7">@fig-7</span>, <span
+class="citation" data-cites="fig-8">@fig-8</span>, <span
+class="citation" data-cites="fig-9">@fig-9</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Просмотр содержания файла /etc/resolv.conf." />
+<figcaption aria-hidden="true">Просмотр содержания файла
+/etc/resolv.conf.</figcaption>
+</figure>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Просмотр содержания файла /etc/named.conf." />
+<figcaption aria-hidden="true">Просмотр содержания файла
+/etc/named.conf.</figcaption>
+</figure>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Просмотр содержания файла /var/named/named.ca." />
+<figcaption aria-hidden="true">Просмотр содержания файла
+/var/named/named.ca.</figcaption>
+</figure>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Просмотр содержания файла /var/named/named.localhost." />
+<figcaption aria-hidden="true">Просмотр содержания файла
+/var/named/named.localhost.</figcaption>
+</figure>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%"
+alt="Просмотр содержания файла /var/named/named.loopback." />
+<figcaption aria-hidden="true">Просмотр содержания файла
+/var/named/named.loopback.</figcaption>
+</figure>
+<h2 id="запуск-dns-сервера">Запуск DNS-сервера</h2>
+<p>Запустим DNS-сервер и включим его в автозагрузку (рис. <span
+class="citation" data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Запуск DNS-сервера и включение автозагрузки." />
+<figcaption aria-hidden="true">Запуск DNS-сервера и включение
+автозагрузки.</figcaption>
+</figure>
+<h2 id="анализ-работы-dns-сервера">Анализ работы DNS-сервера</h2>
+<p>Проанализируем отличие в выведенной на экран информации при
+выполнении команд (рис. <span class="citation"
+data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%" alt="Анализ команд dig." />
+<figcaption aria-hidden="true">Анализ команд dig.</figcaption>
+</figure>
+<h2 id="настройка-сетевых-параметров">Настройка сетевых параметров</h2>
+<p>Сделаем DNS-сервер сервером по умолчанию для хоста server и
+внутренней виртуальной сети. Для этого изменим настройки сетевого
+соединения eth0 в NetworkManager (рис. <span class="citation"
+data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Настройка сетевого соединения eth0." />
+<figcaption aria-hidden="true">Настройка сетевого соединения
+eth0.</figcaption>
+</figure>
+<p>Повторим действия для соединения System eth0 (рис. <span
+class="citation" data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Настройка соединения System eth0." />
+<figcaption aria-hidden="true">Настройка соединения System
+eth0.</figcaption>
+</figure>
+<p>Перезапустим NetworkManager и проверим наличие изменений в файле
+/etc/resolv.conf (рис. <span class="citation"
+data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Перезапуск NetworkManager и проверка resolv.conf." />
+<figcaption aria-hidden="true">Перезапуск NetworkManager и проверка
+resolv.conf.</figcaption>
+</figure>
+<h2 id="настройка-конфигурации-named">Настройка конфигурации named</h2>
+<p>Внесём изменения в файл /etc/named.conf для настройки направления
+DNS-запросов (рис. <span class="citation"
+data-cites="fig-15">@fig-15</span>):</p>
+<figure id="fig-15">
+<img src="image/15.png" style="width:70.0%"
+alt="Редактирование файла /etc/named.conf." />
+<figcaption aria-hidden="true">Редактирование файла
+/etc/named.conf.</figcaption>
+</figure>
+<h2 id="настройка-межсетевого-экрана">Настройка межсетевого экрана</h2>
+<p>Внесём изменения в настройки межсетевого экрана узла server, разрешив
+работу с DNS (рис. <span class="citation"
+data-cites="fig-16">@fig-16</span>):</p>
+<figure id="fig-16">
+<img src="image/16.png" style="width:70.0%"
+alt="Настройка межсетевого экрана и проверка порта 53." />
+<figcaption aria-hidden="true">Настройка межсетевого экрана и проверка
+порта 53.</figcaption>
+</figure>
+<h2 id="настройка-перенаправлений">Настройка перенаправлений</h2>
+<p>Добавим перенаправление DNS-запросов на вышестоящий DNS-сервер и
+отключим DNSSEC при необходимости (рис. <span class="citation"
+data-cites="fig-17">@fig-17</span>):</p>
+<figure id="fig-17">
+<img src="image/17.png" style="width:70.0%"
+alt="Добавление перенаправлений в named.conf." />
+<figcaption aria-hidden="true">Добавление перенаправлений в
+named.conf.</figcaption>
+</figure>
+<h2 id="создание-прямой-зоны">Создание прямой зоны</h2>
+<p>Откроем файл /etc/named/user.net и пропишем прямую и обратную зоны
+(рис. <span class="citation" data-cites="fig-18">@fig-18</span>):</p>
+<figure id="fig-18">
+<img src="image/18.png" style="width:70.0%"
+alt="Редактирование файла /etc/named/user.net." />
+<figcaption aria-hidden="true">Редактирование файла
+/etc/named/user.net.</figcaption>
+</figure>
+<p>Создадим подкаталоги для файлов зон (рис. <span class="citation"
+data-cites="fig-19">@fig-19</span>):</p>
+<figure id="fig-19">
+<img src="image/19.png" style="width:70.0%"
+alt="Создание подкаталогов для файлов зон." />
+<figcaption aria-hidden="true">Создание подкаталогов для файлов
+зон.</figcaption>
+</figure>
+<p>Скопируем шаблон прямой DNS-зоны и переименуем его (рис. <span
+class="citation" data-cites="fig-20">@fig-20</span>):</p>
+<figure id="fig-20">
+<img src="image/20.png" style="width:70.0%"
+alt="Копирование шаблона прямой зоны." />
+<figcaption aria-hidden="true">Копирование шаблона прямой
+зоны.</figcaption>
+</figure>
+<p>Отредактируем файл прямой зоны (рис. <span class="citation"
+data-cites="fig-21">@fig-21</span>):</p>
+<figure id="fig-21">
+<img src="image/21.png" style="width:70.0%"
+alt="Редактирование файла прямой зоны." />
+<figcaption aria-hidden="true">Редактирование файла прямой
+зоны.</figcaption>
+</figure>
+<h2 id="создание-обратной-зоны">Создание обратной зоны</h2>
+<p>Скопируем шаблон обратной DNS-зоны и переименуем его (рис. <span
+class="citation" data-cites="fig-22">@fig-22</span>):</p>
+<figure id="fig-22">
+<img src="image/22.png" style="width:70.0%"
+alt="Копирование шаблона обратной зоны." />
+<figcaption aria-hidden="true">Копирование шаблона обратной
+зоны.</figcaption>
+</figure>
+<p>Отредактируем файл обратной зоны (рис. <span class="citation"
+data-cites="fig-23">@fig-23</span>):</p>
+<figure id="fig-23">
+<img src="image/23.png" style="width:70.0%"
+alt="Редактирование файла обратной зоны." />
+<figcaption aria-hidden="true">Редактирование файла обратной
+зоны.</figcaption>
+</figure>
+<h2 id="настройка-прав-доступа-и-selinux">Настройка прав доступа и
+SELinux</h2>
+<p>Исправим права доступа к файлам и восстановим метки SELinux (рис.
+<span class="citation" data-cites="fig-24">@fig-24</span>):</p>
+<figure id="fig-24">
+<img src="image/24.png" style="width:70.0%"
+alt="Настройка прав доступа и SELinux." />
+<figcaption aria-hidden="true">Настройка прав доступа и
+SELinux.</figcaption>
+</figure>
+<h2 id="проверка-работы-dns-сервера">Проверка работы DNS-сервера</h2>
+<p>Запустим мониторинг системных сообщений (рис. <span class="citation"
+data-cites="fig-25">@fig-25</span>):</p>
+<figure id="fig-25">
+<img src="image/25.png" style="width:70.0%"
+alt="Проверка корректности работы системы." />
+<figcaption aria-hidden="true">Проверка корректности работы
+системы.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были приобретены практические
+навыки по установке и конфигурированию DNS-сервера, а также усвоены
+принципы работы системы доменных имён.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><p><strong>Что такое DNS?</strong><br />
+Это система, предназначенная для преобразования человекочитаемых
+доменных имен в IP-адреса, используемые компьютерами для идентификации
+друг друга в сети.</p></li>
+<li><p><strong>Каково назначение кэширующего DNS-сервера?</strong><br />
+Его задача - хранить результаты предыдущих DNS-запросов в памяти. Когда
+клиент делает запрос, кэширующий DNS проверяет свой кэш, и если он
+содержит соответствующую информацию, сервер возвращает ее без
+необходимости обращаться к другим DNS-серверам. Это ускоряет процесс
+запроса.</p></li>
+<li><p><strong>Чем отличается прямая DNS-зона от
+обратной?</strong><br />
+Прямая зона преобразует доменные имена в IP-адреса, обратная зона
+выполняет обратное: преобразует IP-адреса в доменные имена.</p></li>
+<li><p><strong>В каких каталогах и файлах располагаются настройки
+DNS-сервера? Кратко охарактеризуйте, за что они отвечают.</strong><br />
+В Linux-системах обычно используется файл /etc/named.conf для общих
+настроек. Зоны хранятся в файлах в каталоге /var/named/, например,
+/var/named/example.com.zone.</p></li>
+<li><p><strong>Что указывается в файле resolv.conf?</strong><br />
+Содержит информацию о DNS-серверах, используемых системой, а также о
+параметрах конфигурации.</p></li>
+<li><p><strong>Какие типы записи описания ресурсов есть в DNS и для чего
+они используются?</strong><br />
+A (IPv4-адрес), AAAA (IPv6-адрес), CNAME (каноническое имя), MX
+(почтовый сервер), NS (имя сервера), PTR (обратная запись), SOA
+(начальная запись зоны), TXT (текстовая информация).</p></li>
+<li><p><strong>Для чего используется домен in-addr.arpa?</strong><br />
+Используется для обратного маппинга IP-адресов в доменные
+имена.</p></li>
+<li><p><strong>Для чего нужен демон named?</strong><br />
+Это DNS-сервер, реализация BIND (Berkeley Internet Name
+Domain).</p></li>
+<li><p><strong>В чём заключаются основные функции slave-сервера и
+master-сервера?</strong><br />
+Master-сервер хранит оригинальные записи зоны, slave-серверы получают
+копии данных от master-сервера.</p></li>
+<li><p><strong>Какие параметры отвечают за время обновления
+зоны?</strong><br />
+refresh, retry, expire, и minimum.</p></li>
+<li><p><strong>Как обеспечить защиту зоны от скачивания и
+просмотра?</strong><br />
+Это может включать в себя использование TSIG (Transaction SIGnatures)
+для аутентификации между серверами.</p></li>
+<li><p><strong>Какая запись RR применяется при создании почтовых
+серверов?</strong><br />
+MX (Mail Exchange).</p></li>
+<li><p><strong>Как протестировать работу сервера доменных
+имён?</strong><br />
+Используйте команды nslookup, dig, или host.</p></li>
+<li><p><strong>Как запустить, перезапустить или остановить какую-либо
+службу в системе?</strong><br />
+systemctl start|stop|restart <service>.</p></li>
+<li><p><strong>Как посмотреть отладочную информацию при запуске
+какого-либо сервиса или службы?</strong><br />
+Используйте опции, такие как -d или -v при запуске службы.</p></li>
+<li><p><strong>Где хранится отладочная информация по работе системы и
+служб? Как её посмотреть?</strong><br />
+В системных журналах, доступных через journalctl.</p></li>
+<li><p><strong>Как посмотреть, какие файлы использует в своей работе тот
+или иной процесс? Приведите несколько примеров.</strong><br />
+lsof -p <pid> или fuser -v <file>.</p></li>
+<li><p><strong>Приведите несколько примеров по изменению сетевого
+соединения при помощи командного интерфейса nmcli.</strong><br />
+Примеры включают nmcli connection up|down <connection_name>.</p></li>
+<li><p><strong>Что такое SELinux?</strong><br />
+Это мандатный контроль доступа для ядра Linux.</p></li>
+<li><p><strong>Что такое контекст (метка) SELinux?</strong><br />
+Метка, определяющая, какие ресурсы могут быть доступны процессу или
+объекту.</p></li>
+<li><p><strong>Как восстановить контекст SELinux после внесения
+изменений в конфигурационные файлы?</strong><br />
+restorecon -Rv <directory>.</p></li>
+<li><p><strong>Как создать разрешающие правила политики SELinux из
+файлов журналов, содержащих сообщения о запрете операций?</strong><br />
+Используйте audit2allow.</p></li>
+<li><p><strong>Что такое булевый переключатель в SELinux?</strong><br />
+Это параметр, который включает или отключает определенные аспекты защиты
+SELinux.</p></li>
+<li><p><strong>Как посмотреть список переключателей SELinux и их
+состояние?</strong><br />
+getsebool -a.</p></li>
+<li><p><strong>Как изменить значение переключателя
+SELinux?</strong><br />
+setsebool -P <boolean_name> &lt;on|off&gt;.</p></li>
+</ol>

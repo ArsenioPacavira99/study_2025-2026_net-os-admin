@@ -1,0 +1,171 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является приобретение практических навыков по
+установке и конфигурированию SMTP-сервера.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="установка-postfix-на-сервере">Установка Postfix на сервере</h2>
+<p>На виртуальной машине server войдём под нашим пользователем и откроем
+терминал. Перейдём в режим суперпользователя и установим необходимые для
+работы пакеты (рис. <span class="citation"
+data-cites="fig-1">@fig-1</span>, <span class="citation"
+data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Установка пакета postfix на сервере." />
+<figcaption aria-hidden="true">Установка пакета postfix на
+сервере.</figcaption>
+</figure>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Установка пакета s-nail на сервере." />
+<figcaption aria-hidden="true">Установка пакета s-nail на
+сервере.</figcaption>
+</figure>
+<h2 id="настройка-межсетевого-экрана-и-запуск-postfix">Настройка
+межсетевого экрана и запуск Postfix</h2>
+<p>Сконфигурируем межсетевой экран, разрешив работать службе протокола
+SMTP. Восстановим контекст безопасности в SELinux и запустим Postfix
+(рис. <span class="citation" data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Настройка межсетевого экрана, восстановление SELinux и запуск Postfix." />
+<figcaption aria-hidden="true">Настройка межсетевого экрана,
+восстановление SELinux и запуск Postfix.</figcaption>
+</figure>
+<h2 id="настройка-параметров-postfix">Настройка параметров Postfix</h2>
+<p>Просмотрим и изменим параметры Postfix, заменив значение параметра
+myorigin на значение параметра mydomain (рис. <span class="citation"
+data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Просмотр и изменение параметров Postfix." />
+<figcaption aria-hidden="true">Просмотр и изменение параметров
+Postfix.</figcaption>
+</figure>
+<h2 id="проверка-конфигурации">Проверка конфигурации</h2>
+<p>Проверим корректность конфигурационного файла и перезагрузим Postfix
+(рис. <span class="citation" data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Проверка конфигурации и перезагрузка Postfix." />
+<figcaption aria-hidden="true">Проверка конфигурации и перезагрузка
+Postfix.</figcaption>
+</figure>
+<h2 id="отправка-тестового-письма-с-сервера">Отправка тестового письма с
+сервера</h2>
+<p>На сервере под учётной записью пользователя отправим себе письмо,
+используя утилиту mail (рис. <span class="citation"
+data-cites="fig-6">@fig-6</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Отправка тестового письма с сервера." />
+<figcaption aria-hidden="true">Отправка тестового письма с
+сервера.</figcaption>
+</figure>
+<h2 id="мониторинг-почтовой-службы">Мониторинг почтовой службы</h2>
+<p>Запустим мониторинг работы почтовой службы и посмотрим, что произошло
+с нашим сообщением (рис. <span class="citation"
+data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Мониторинг работы почтовой службы." />
+<figcaption aria-hidden="true">Мониторинг работы почтовой
+службы.</figcaption>
+</figure>
+<h2 id="установка-postfix-на-клиенте">Установка Postfix на клиенте</h2>
+<p>На виртуальной машине client установим необходимые для работы пакеты
+(рис. <span class="citation" data-cites="fig-8">@fig-8</span>, <span
+class="citation" data-cites="fig-9">@fig-9</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Установка postfix на клиенте." />
+<figcaption aria-hidden="true">Установка postfix на
+клиенте.</figcaption>
+</figure>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%"
+alt="Установка s-nail на клиенте." />
+<figcaption aria-hidden="true">Установка s-nail на клиенте.</figcaption>
+</figure>
+<h2 id="настройка-postfix-на-клиенте">Настройка Postfix на клиенте</h2>
+<p>Настроим Postfix на клиенте и отправим тестовое письмо (рис. <span
+class="citation" data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Настройка Postfix и отправка письма с клиента." />
+<figcaption aria-hidden="true">Настройка Postfix и отправка письма с
+клиента.</figcaption>
+</figure>
+<h2 id="настройка-сетевых-параметров-postfix-на-сервере">Настройка
+сетевых параметров Postfix на сервере</h2>
+<p>На сервере настроим параметры сетевых интерфейсов и перезапустим
+Postfix (рис. <span class="citation"
+data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Настройка сетевых параметров Postfix на сервере." />
+<figcaption aria-hidden="true">Настройка сетевых параметров Postfix на
+сервере.</figcaption>
+</figure>
+<h2 id="отправка-на-доменный-адрес">Отправка на доменный адрес</h2>
+<p>С клиента отправим письмо на свой доменный адрес и просмотрим очередь
+сообщений (рис. <span class="citation"
+data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Отправка письма на доменный адрес и просмотр очереди." />
+<figcaption aria-hidden="true">Отправка письма на доменный адрес и
+просмотр очереди.</figcaption>
+</figure>
+<h2 id="настройка-dns-записей-для-почты">Настройка DNS-записей для
+почты</h2>
+<p>Пропишем MX-запись в файлах прямой и обратной DNS-зон (рис. <span
+class="citation" data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Добавление MX-записи в DNS-зоны." />
+<figcaption aria-hidden="true">Добавление MX-записи в
+DNS-зоны.</figcaption>
+</figure>
+<h2 id="восстановление-selinux-и-перезапуск-dns">Восстановление SELinux
+и перезапуск DNS</h2>
+<p>Восстановим контекст безопасности, перезапустим DNS и отправим
+сообщения из очереди (рис. <span class="citation"
+data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Восстановление SELinux, перезапуск DNS и отправка очереди." />
+<figcaption aria-hidden="true">Восстановление SELinux, перезапуск DNS и
+отправка очереди.</figcaption>
+</figure>
+<h2 id="настройка-автоматического-развёртывания">Настройка
+автоматического развёртывания</h2>
+<p>Настроим скрипты для автоматического развёртывания и добавим записи в
+Vagrantfile (рис. <span class="citation"
+data-cites="fig-15">@fig-15</span>):</p>
+<figure id="fig-15">
+<img src="image/15.png" style="width:70.0%"
+alt="Настройка автоматического развёртывания." />
+<figcaption aria-hidden="true">Настройка автоматического
+развёртывания.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были получены навыки по
+установке и конфигурированию SMTP-сервера.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><p><strong>В каком каталоге и в каком файле следует смотреть
+конфигурацию Postfix?</strong><br />
+Конфигурация Postfix обычно хранится в файле main.cf, в каталоге
+/etc/postfix/. Таким образом, путь к файлу конфигурации будет
+/etc/postfix/main.cf.</p></li>
+<li><p><strong>Каким образом можно проверить корректность синтаксиса в
+конфигурационном файле Postfix?</strong><br />
+Для проверки корректности синтаксиса в конфигурационном файле Postfix
+можно использовать команду <code>postfix check</code>.</p></li>
+<li><p><strong>В каких параметрах конфигурации Postfix требуется внести
+изменения для настройки возможности отправки писем на доменные
+адреса?</strong><br />
+Для настройки отправки писем на доменные адреса, нужно изменить
+параметры myhostname и mydomain в файле main.cf:</p></li>
+</ol>

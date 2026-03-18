@@ -1,0 +1,254 @@
+<h1 id="цель-работы">Цель работы</h1>
+<p>Целью данной работы является приобретение навыков настройки сервера
+NFS для удалённого доступа к ресурсам.</p>
+<h1 id="выполнение-лабораторной-работы">Выполнение лабораторной
+работы</h1>
+<h2 id="установка-nfs-на-сервере">Установка NFS на сервере</h2>
+<p>На сервере установим необходимое программное обеспечение nfs-utils
+(рис. <span class="citation" data-cites="fig-1">@fig-1</span>):</p>
+<figure id="fig-1">
+<img src="image/1.png" style="width:70.0%"
+alt="Установка nfs-utils на сервере." />
+<figcaption aria-hidden="true">Установка nfs-utils на
+сервере.</figcaption>
+</figure>
+<h2 id="создание-корневого-каталога-nfs">Создание корневого каталога
+NFS</h2>
+<p>На сервере создадим каталог, который предполагается сделать доступным
+всем пользователям сети (корень дерева NFS) (рис. <span class="citation"
+data-cites="fig-2">@fig-2</span>):</p>
+<figure id="fig-2">
+<img src="image/2.png" style="width:70.0%"
+alt="Создание корневого каталога NFS." />
+<figcaption aria-hidden="true">Создание корневого каталога
+NFS.</figcaption>
+</figure>
+<h2 id="настройка-экспорта-каталога">Настройка экспорта каталога</h2>
+<p>В файле /etc/exports пропишем подключаемый через NFS общий каталог с
+доступом только на чтение (рис. <span class="citation"
+data-cites="fig-3">@fig-3</span>):</p>
+<figure id="fig-3">
+<img src="image/3.png" style="width:70.0%"
+alt="Настройка экспорта каталога в /etc/exports." />
+<figcaption aria-hidden="true">Настройка экспорта каталога в
+/etc/exports.</figcaption>
+</figure>
+<h2 id="настройка-selinux-и-запуск-сервера">Настройка SELinux и запуск
+сервера</h2>
+<p>Для общего каталога зададим контекст безопасности NFS, применим
+изменённую настройку SELinux, запустим сервер NFS и настроим межсетевой
+экран (рис. <span class="citation"
+data-cites="fig-4">@fig-4</span>):</p>
+<figure id="fig-4">
+<img src="image/4.png" style="width:70.0%"
+alt="Настройка SELinux, запуск NFS и конфигурация межсетевого экрана." />
+<figcaption aria-hidden="true">Настройка SELinux, запуск NFS и
+конфигурация межсетевого экрана.</figcaption>
+</figure>
+<h2 id="установка-nfs-на-клиенте">Установка NFS на клиенте</h2>
+<p>На клиенте установим необходимое для работы NFS программное
+обеспечение (рис. <span class="citation"
+data-cites="fig-5">@fig-5</span>):</p>
+<figure id="fig-5">
+<img src="image/5.png" style="width:70.0%"
+alt="Установка nfs-utils на клиенте." />
+<figcaption aria-hidden="true">Установка nfs-utils на
+клиенте.</figcaption>
+</figure>
+<h2 id="просмотр-удалённых-ресурсов">Просмотр удалённых ресурсов</h2>
+<p>На клиенте попробуем посмотреть имеющиеся подмонтированные удалённые
+ресурсы (рис. <span class="citation"
+data-cites="fig-6">@fig-6</span>):</p>
+<figure id="fig-6">
+<img src="image/6.png" style="width:70.0%"
+alt="Просмотр удалённых ресурсов на клиенте." />
+<figcaption aria-hidden="true">Просмотр удалённых ресурсов на
+клиенте.</figcaption>
+</figure>
+<h2 id="остановка-межсетевого-экрана">Остановка межсетевого экрана</h2>
+<p>Попробуем на сервере остановить сервис межсетевого экрана (рис. <span
+class="citation" data-cites="fig-7">@fig-7</span>):</p>
+<figure id="fig-7">
+<img src="image/7.png" style="width:70.0%"
+alt="Остановка межсетевого экрана на сервере." />
+<figcaption aria-hidden="true">Остановка межсетевого экрана на
+сервере.</figcaption>
+</figure>
+<h2 id="запуск-межсетевого-экрана">Запуск межсетевого экрана</h2>
+<p>На сервере запустим сервис межсетевого экрана (рис. <span
+class="citation" data-cites="fig-8">@fig-8</span>):</p>
+<figure id="fig-8">
+<img src="image/8.png" style="width:70.0%"
+alt="Запуск межсетевого экрана на сервере." />
+<figcaption aria-hidden="true">Запуск межсетевого экрана на
+сервере.</figcaption>
+</figure>
+<h2 id="просмотр-служб-nfs">Просмотр служб NFS</h2>
+<p>На сервере посмотрим, какие службы задействованы при удалённом
+монтировании (TCP и UDP) (рис. <span class="citation"
+data-cites="fig-9">@fig-9</span>, <span class="citation"
+data-cites="fig-10">@fig-10</span>):</p>
+<figure id="fig-9">
+<img src="image/9.png" style="width:70.0%"
+alt="Просмотр служб NFS (TCP)." />
+<figcaption aria-hidden="true">Просмотр служб NFS (TCP).</figcaption>
+</figure>
+<figure id="fig-10">
+<img src="image/10.png" style="width:70.0%"
+alt="Просмотр служб NFS (UDP)." />
+<figcaption aria-hidden="true">Просмотр служб NFS (UDP).</figcaption>
+</figure>
+<h2 id="добавление-служб-в-межсетевой-экран">Добавление служб в
+межсетевой экран</h2>
+<p>Добавим службы rpc-bind и mountd в настройки межсетевого экрана на
+сервере (рис. <span class="citation"
+data-cites="fig-11">@fig-11</span>):</p>
+<figure id="fig-11">
+<img src="image/11.png" style="width:70.0%"
+alt="Добавление служб rpc-bind и mountd в межсетевой экран." />
+<figcaption aria-hidden="true">Добавление служб rpc-bind и mountd в
+межсетевой экран.</figcaption>
+</figure>
+<h2 id="монтирование-nfs-на-клиенте">Монтирование NFS на клиенте</h2>
+<p>На клиенте создадим каталог для монтирования удалённого ресурса и
+подмонтируем дерево NFS. Проверим, что общий ресурс подключён правильно
+(рис. <span class="citation" data-cites="fig-12">@fig-12</span>):</p>
+<figure id="fig-12">
+<img src="image/12.png" style="width:70.0%"
+alt="Монтирование NFS на клиенте." />
+<figcaption aria-hidden="true">Монтирование NFS на клиенте.</figcaption>
+</figure>
+<h2 id="настройка-автоматического-монтирования">Настройка
+автоматического монтирования</h2>
+<p>На клиенте в конце файла /etc/fstab добавим запись для
+автоматического монтирования NFS при загрузке (рис. <span
+class="citation" data-cites="fig-13">@fig-13</span>):</p>
+<figure id="fig-13">
+<img src="image/13.png" style="width:70.0%"
+alt="Добавление записи в /etc/fstab на клиенте." />
+<figcaption aria-hidden="true">Добавление записи в /etc/fstab на
+клиенте.</figcaption>
+</figure>
+<h2 id="проверка-автоматического-монтирования">Проверка автоматического
+монтирования</h2>
+<p>На клиенте проверим наличие автоматического монтирования удалённых
+ресурсов при запуске системы (рис. <span class="citation"
+data-cites="fig-14">@fig-14</span>):</p>
+<figure id="fig-14">
+<img src="image/14.png" style="width:70.0%"
+alt="Проверка автоматического монтирования." />
+<figcaption aria-hidden="true">Проверка автоматического
+монтирования.</figcaption>
+</figure>
+<h2 id="создание-каталога-для-веб-контента">Создание каталога для
+веб-контента</h2>
+<p>На сервере создадим общий каталог, в который затем будет
+подмонтирован каталог с контентом веб-сервера (рис. <span
+class="citation" data-cites="fig-15">@fig-15</span>):</p>
+<figure id="fig-15">
+<img src="image/15.png" style="width:70.0%"
+alt="Создание каталога для веб-контента." />
+<figcaption aria-hidden="true">Создание каталога для
+веб-контента.</figcaption>
+</figure>
+<h2 id="монтирование-веб-каталога">Монтирование веб-каталога</h2>
+<p>Подмонтируем каталог веб-сервера и проверим содержимое каталога
+/srv/nfs (рис. <span class="citation"
+data-cites="fig-16">@fig-16</span>):</p>
+<figure id="fig-16">
+<img src="image/16.png" style="width:70.0%"
+alt="Монтирование веб-каталога в NFS." />
+<figcaption aria-hidden="true">Монтирование веб-каталога в
+NFS.</figcaption>
+</figure>
+<h2 id="экспорт-веб-каталога">Экспорт веб-каталога</h2>
+<p>На сервере в файле /etc/exports добавим экспорт каталога веб-сервера
+с удалённого ресурса (рис. <span class="citation"
+data-cites="fig-17">@fig-17</span>):</p>
+<figure id="fig-17">
+<img src="image/17.png" style="width:70.0%"
+alt="Добавление экспорта веб-каталога в /etc/exports." />
+<figcaption aria-hidden="true">Добавление экспорта веб-каталога в
+/etc/exports.</figcaption>
+</figure>
+<h2 id="настройка-автоматического-монтирования-веб-каталога">Настройка
+автоматического монтирования веб-каталога</h2>
+<p>На сервере в конце файла /etc/fstab добавим запись для
+автоматического монтирования веб-каталога (рис. <span class="citation"
+data-cites="fig-18">@fig-18</span>):</p>
+<figure id="fig-18">
+<img src="image/18.png" style="width:70.0%"
+alt="Добавление записи в /etc/fstab для веб-каталога." />
+<figcaption aria-hidden="true">Добавление записи в /etc/fstab для
+веб-каталога.</figcaption>
+</figure>
+<h2 id="создание-пользовательского-каталога">Создание пользовательского
+каталога</h2>
+<p>На сервере под пользователем user создадим каталог common и файл
+user@server.txt. Подмонтируем его в NFS (рис. <span class="citation"
+data-cites="fig-19">@fig-19</span>):</p>
+<figure id="fig-19">
+<img src="image/19.png" style="width:70.0%"
+alt="Создание пользовательского каталога и монтирование в NFS." />
+<figcaption aria-hidden="true">Создание пользовательского каталога и
+монтирование в NFS.</figcaption>
+</figure>
+<h2 id="экспорт-пользовательского-каталога">Экспорт пользовательского
+каталога</h2>
+<p>Подключим каталог пользователя в файле /etc/exports (рис. <span
+class="citation" data-cites="fig-20">@fig-20</span>):</p>
+<figure id="fig-20">
+<img src="image/20.png" style="width:70.0%"
+alt="Экспорт пользовательского каталога в /etc/exports." />
+<figcaption aria-hidden="true">Экспорт пользовательского каталога в
+/etc/exports.</figcaption>
+</figure>
+<h2
+id="настройка-автоматического-монтирования-пользовательского-каталога">Настройка
+автоматического монтирования пользовательского каталога</h2>
+<p>Внесём изменения в файл /etc/fstab для автоматического монтирования
+пользовательского каталога (рис. <span class="citation"
+data-cites="fig-21">@fig-21</span>):</p>
+<figure id="fig-21">
+<img src="image/21.png" style="width:70.0%"
+alt="Добавление записи в /etc/fstab для пользовательского каталога." />
+<figcaption aria-hidden="true">Добавление записи в /etc/fstab для
+пользовательского каталога.</figcaption>
+</figure>
+<h2 id="проверка-доступа-на-клиенте">Проверка доступа на клиенте</h2>
+<p>На клиенте под пользователем user попробуем создать файл в
+подмонтированном каталоге (рис. <span class="citation"
+data-cites="fig-22">@fig-22</span>):</p>
+<figure id="fig-22">
+<img src="image/22.png" style="width:70.0%"
+alt="Проверка доступа к NFS на клиенте." />
+<figcaption aria-hidden="true">Проверка доступа к NFS на
+клиенте.</figcaption>
+</figure>
+<h1 id="выводы">Выводы</h1>
+<p>В ходе выполнения лабораторной работы были приобретены навыки
+настройки сервера NFS для удалённого доступа к ресурсам.</p>
+<h1 id="контрольные-вопросы">Контрольные вопросы</h1>
+<ol type="1">
+<li><p><strong>Как называется файл конфигурации, содержащий общие
+ресурсы NFS?</strong><br />
+Файл конфигурации, содержащий общие ресурсы NFS, называется
+<code>/etc/exports</code>. В этом файле определяются каталоги, которые
+будут доступны для общего использования через NFS.</p></li>
+<li><p><strong>Какие порты должны быть открыты в брандмауэре, чтобы
+обеспечить полный доступ к серверу NFS?</strong><br />
+Для обеспечения полного доступа к серверу NFS, обычно открываются
+следующие порты:</p>
+<ul>
+<li>TCP и UDP порт 2049: Основной порт для NFS.</li>
+<li>TCP и UDP порт 111: Порт для службы rpcbind.</li>
+<li>Порты для динамически выделяемых портов (обычно в диапазоне
+32768-32779), используемых NFS для передачи данных.</li>
+</ul></li>
+<li><p><strong>Какую опцию следует использовать в /etc/fstab, чтобы
+убедиться, что общие ресурсы NFS могут быть установлены автоматически
+при перезагрузке?</strong><br />
+Для автоматической установки общих ресурсов NFS при загрузке системы, в
+файле /etc/fstab следует использовать опцию <code>auto</code>. Пример
+строки:</p></li>
+</ol>
